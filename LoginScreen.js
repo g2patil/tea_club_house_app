@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CookieManager from '@react-native-cookies/cookies';
 import {Image, TouchableOpacity, ImageBackground, StyleSheet, View, Text, TextInput} from 'react-native';
 import { UserContext } from './UserContext';
+import CircularJSON from 'circular-json';
+
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -24,6 +26,8 @@ const LoginScreen = ({ navigation }) => {
         },
         body: JSON.stringify({ username: email, password }),
       });
+
+    //  console.log(CircularJSON.stringify({username: email, password}));
       if (response.ok) {
         const data = await response.json();
         const sessionId = data.sessionId;

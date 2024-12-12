@@ -80,13 +80,9 @@ const handleToggleChange = (roleId, isPaid) => {
     // Prepare selected roles for API
     const rolePaidStatusesArray = Object.keys(rolePaidStatuses).map((roleId) => ({
       roleId,
-      status: rolePaidStatuses[roleId] === 'paid' ? 'paid' : 'free', //
-      //paid: rolePaidStatuses[roleId] === 'paid', // Convert string to boolean
-     // paid: rolePaidStatuses[roleId] === 'free', 
-     // selected: rolePaidStatuses[roleId] !== 'free', 
+      paid: rolePaidStatuses[roleId] === 'paid', // Convert string to boolean
     }));
-     console.log("aaaa"+JSON.stringify(rolePaidStatusesArray));
-    // return updatedStatuses; 
+
     const activityData = {
       name,
       description,
@@ -169,25 +165,20 @@ const handleToggleChange = (roleId, isPaid) => {
         onValueChange={(value) => handleRoleChange(role.id, value)}
         value={rolePaidStatuses[role.id] || 'paid'}
       >
-        <View style={styles.radioRow}>
-        <Text style={styles.radioLabel}>free</Text>
-          <RadioButton value="free" text="free" />
-           <Text style={styles.radioLabel}>Paid</Text>
-          <RadioButton value="paid" text="paid"/>
+        <View style={styles.radioCell}>
+          <RadioButton value="free" />
         </View>
       </RadioButton.Group>
-      
 
-      {/* Free Radio Button
+      {/* Free Radio Button*/
       <RadioButton.Group
         onValueChange={(value) => handleRoleChange(role.id, value)}
         value={rolePaidStatuses[role.id] || 'free'}
       >
         <View style={styles.radioCell}>
           <RadioButton value="free" />
-         
         </View>
-      </RadioButton.Group>*/ }
+      </RadioButton.Group> }
     </View>
   ))}
 </View>
@@ -270,11 +261,6 @@ const styles = StyleSheet.create({
   radioCell: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  radioRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 });
 
