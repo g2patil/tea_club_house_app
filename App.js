@@ -14,6 +14,7 @@ import Register_club_member from './Register_club_member';
 import AdminScreen from './AdminScreen';
 import MainActivityScreen from './MainActivityScreen';
 import SubActivityScreen from './SubActivityScreen';
+import Activity_view from './Activity_view';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const App = () => {
         <Stack.Screen name="AdminScreen" component={AdminScreen} />
         <Stack.Screen name="MainActivityScreen" component={MainActivityScreen} />
         <Stack.Screen name="SubActivityScreen" component={SubActivityScreen} />
+        <Stack.Screen name="Activity_view" component={Activity_view} />
        
          </Stack.Navigator>
     </NavigationContainer>

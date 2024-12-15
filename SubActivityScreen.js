@@ -43,6 +43,11 @@ const SubActivityScreen = ({ navigation }) => {
         const data = await response.json();
         if (response.ok) {
           setRoles(data);
+          const initialRoleStatuses = {};
+          data.forEach(role => {
+            initialRoleStatuses[role.id] = 'paid';  // Defaulting to 'paid'
+          });
+          setRolePaidStatuses(initialRoleStatuses);
         } else {
           Alert.alert('Error', 'Failed to fetch roles');
         }
@@ -80,7 +85,8 @@ const handleToggleChange = (roleId, isPaid) => {
     // Prepare selected roles for API
     const rolePaidStatusesArray = Object.keys(rolePaidStatuses).map((roleId) => ({
       roleId,
-      status: rolePaidStatuses[roleId] === 'paid' ? 'paid' : 'free', //
+      paid: rolePaidStatuses[roleId] === 'paid' ? 'true' : 'false', //
+    //  selected: rolePaidStatuses[roleId] == 'free',
       //paid: rolePaidStatuses[roleId] === 'paid', // Convert string to boolean
      // paid: rolePaidStatuses[roleId] === 'free', 
      // selected: rolePaidStatuses[roleId] !== 'free', 
@@ -102,7 +108,7 @@ const handleToggleChange = (roleId, isPaid) => {
         },
         body: JSON.stringify(activityData),
       });
-
+      // console.log("|"+JSON.stringify(activityData)+"|");
       if (response.ok) {
         Alert.alert('Success', 'Sub activity created successfully');
         setName('');
@@ -136,7 +142,7 @@ const handleToggleChange = (roleId, isPaid) => {
         multiline
       />
 
-      <Text style={styles.label}>Select Main Activity</Text>
+     {/* <Text style={styles.label}>Select Main Activity</Text>*/}
       <Picker
         selectedValue={mainActivityId}
         onValueChange={setMainActivityId}
@@ -148,7 +154,7 @@ const handleToggleChange = (roleId, isPaid) => {
         ))}
       </Picker>
 
-      <Text style={styles.label}>Assign Roles</Text>
+    {/*<Text style={styles.label}>Assign Roles</Text>*/}  
 
 <View style={styles.table}>
   {/* Table Header */}
@@ -164,7 +170,7 @@ const handleToggleChange = (roleId, isPaid) => {
       {/* Role Name */}
       <Text style={styles.tableCell}>{role.role}</Text>
 
-      {/* Paid Radio Button */}
+      { /*Paid Radio Button*/ }
       <RadioButton.Group
         onValueChange={(value) => handleRoleChange(role.id, value)}
         value={rolePaidStatuses[role.id] || 'paid'}
@@ -176,6 +182,7 @@ const handleToggleChange = (roleId, isPaid) => {
           <RadioButton value="paid" text="paid"/>
         </View>
       </RadioButton.Group>
+      
       
 
       {/* Free Radio Button

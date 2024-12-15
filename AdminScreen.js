@@ -9,6 +9,7 @@ export default AdminScreen = ({ navigation }) => {
     { id: 3, title: 'Members', source: require('./assets/messages_inactive.png'), path: '' },
     { id: 4, title: 'Reports', source: require('./assets/messages_inactive.png'), path: '' },
     { id: 5, title: 'Settings', source: require('./assets/messages_inactive.png'), path: '' },
+    { id: 7, title: 'View All Activity', source: require('./assets/messages_inactive.png'), path: 'Activity_view' },
     { id: 6, title: 'Back', source: require('./assets/messages_inactive.png'), path: 'Menu' },
   ];
 
